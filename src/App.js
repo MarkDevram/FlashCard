@@ -1,6 +1,5 @@
 import "./styles.css"
-import { useState } from "react"
-
+import React, { useState } from "react"
 export default function App() {
   return (
     <div className="App">
@@ -44,25 +43,25 @@ const questions = [
 ]
 
 function FlashCards() {
-  const [selectedId, setSelectedId] = useState(null)
-
-  function handleClick(id) {
-    setSelectedId(id !== selectedId ? id : null)
-  }
-
+  const [selectedCard, setSelectedCard] = useState(null)
   return (
     <div className="flashcards">
-      {questions.map((question) => (
-        <div
-          key={question.id}
-          onClick={() => handleClick(question.id)}
-          className={question.id === selectedId ? "selected" : ""}
-        >
-          <p>
-            {question.id === selectedId ? question.answer : question.question}
-          </p>
-        </div>
-      ))}
+      {questions.map((question) => {
+        return (
+          <div
+            onClick={() => {
+              setSelectedCard(question.id === selectedCard ? null : question.id)
+            }}
+            className={selectedCard === question.id ? "selected" : ""}
+          >
+            <p>
+              {selectedCard === question.id
+                ? question.answer
+                : question.question}
+            </p>
+          </div>
+        )
+      })}
     </div>
   )
 }
