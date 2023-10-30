@@ -1,5 +1,6 @@
-import "./styles.css"
 import React, { useState } from "react"
+import "./styles.css"
+
 export default function App() {
   return (
     <div className="App">
@@ -43,21 +44,19 @@ const questions = [
 ]
 
 function FlashCards() {
-  const [selectedCard, setSelectedCard] = useState(null)
+  const [selectedId, setSelectedId] = useState(null)
   return (
     <div className="flashcards">
       {questions.map((question) => {
         return (
           <div
             onClick={() => {
-              setSelectedCard(question.id === selectedCard ? null : question.id)
+              setSelectedId(question.id === selectedId ? null : question.id)
             }}
-            className={selectedCard === question.id ? "selected" : ""}
+            className={selectedId === question.id ? "selected" : ""}
           >
             <p>
-              {selectedCard === question.id
-                ? question.answer
-                : question.question}
+              {selectedId === question.id ? question.answer : question.question}
             </p>
           </div>
         )
