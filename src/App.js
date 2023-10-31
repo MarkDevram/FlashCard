@@ -50,6 +50,7 @@ function FlashCards() {
       {questions.map((question) => {
         return (
           <div
+            key={question.id}
             onClick={() => {
               setSelectedId(question.id === selectedId ? null : question.id)
             }}
